@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -19,8 +22,8 @@ public class EClass {
     @Column(name = "class_ID")
     private Long classID;
 
-    @Column(name = "teacher_ID")
-    private Long teacherID;
+//    @Column(name = "teacher_ID")
+//    private Long teacherID;
 
     @Column(name = "class_Name")
     private String className;
@@ -48,4 +51,11 @@ public class EClass {
 
     @Column(name = "class_OpenDate")
     private Date classOpenDate;
+
+    @OneToOne
+    @JoinColumn(name = "teacher_ID")
+    private ETeacher eTeacher;
+
+    @OneToMany(mappedBy = "eClass", fetch = FetchType.LAZY)
+    private List<EClassAttach> eClassAttachList;
 }

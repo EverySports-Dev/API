@@ -1,34 +1,17 @@
 package com.everysports.user.domain;
 
-import lombok.*;
+public interface ClassList {
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+     String getClassName();
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Data
-@EqualsAndHashCode
-public class ClassList {
+     String getTeacherName();
 
-    @Column(name="class_Name")
-    private String className;
+     Integer getClassPrice();
 
-    @Column(name="teacher_Name")
-    private String teacherName;
+     String getUploadPath();
 
-    @Column(name="class_Price")
-    private Integer classPrice;
+     String getFileName();
 
-    @Column(name="uploadPath")
-    private String uploadPath;
-
-    @Column(name="fileName")
-    private String fileName;
-
-    @Column(name="class_Num")
-    private Integer classNum;
+     Integer getClassNum();
 
 }
