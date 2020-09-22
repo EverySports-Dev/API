@@ -1,12 +1,13 @@
 package com.everysports.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.*;
 
 @Entity
 @AllArgsConstructor
@@ -14,6 +15,7 @@ import java.util.Set;
 @ToString
 @Data
 @EqualsAndHashCode
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "class_ID")
 @Table(name = "eClass")
 public class EClass {
 
@@ -50,6 +52,7 @@ public class EClass {
     private Integer classLowerbound;
 
     @Column(name = "class_OpenDate")
+    @Temporal(TemporalType.DATE)
     private Date classOpenDate;
 
     @OneToOne
