@@ -17,7 +17,7 @@ public class EClassController {
     private EClassService eClassService;
 
     @GetMapping("/every/hotclass")
-    public List<ClassList> hotClass(){
+    public List<ClassList> getHotClass(){
         return eClassService.getHotClass();
     }
 
