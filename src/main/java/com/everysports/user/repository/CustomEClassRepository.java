@@ -10,4 +10,6 @@ public interface CustomEClassRepository {
 
     List<ClassList> findTop5ByOrderByClassNumDesc();
 
+    List<ClassList> findTop5ByOrderByClassOpenDateDesc();
+
 }

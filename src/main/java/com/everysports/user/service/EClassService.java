@@ -21,4 +21,9 @@ public class EClassService {
 
         return eClassRepository.findTop5ByOrderByClassNumDesc();
     }
+
+    public List<ClassList> getNewClass(){
+
+        return eClassRepository.findTop5ByOrderByClassOpenDateDesc();
+    }
 }

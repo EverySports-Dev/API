@@ -21,4 +21,6 @@ public class EClassController {
         return eClassService.getHotClass();
     }
 
+    @GetMapping("/every/newclass")
+    public List<ClassList> newClass() { return eClassService.getNewClass(); }
 }
