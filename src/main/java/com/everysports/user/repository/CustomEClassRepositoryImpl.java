@@ -28,7 +28,7 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
 
         List<ClassList> result = query.selectDistinct(Projections.constructor(ClassList.class,
                 eClass.className, eTeacher.teacherName, eClass.classPrice, eClassAttach.uploadPath
-                ,eClassAttach.fileName, eClass.classNum)).from(eClass)
+                ,eClassAttach.fileName, eClass.classNum, eClass.classOpenDate)).from(eClass)
                 .join(eTeacher).on(eClass.eTeacher.eq(eTeacher))
                 .join(eClassAttach).on(eClassAttach.eClass.eq(eClass))
                 .where(eClassAttach.mainPhoto.eq(true))
