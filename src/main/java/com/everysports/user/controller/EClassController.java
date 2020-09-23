@@ -22,5 +22,5 @@ public class EClassController {
     }
 
     @GetMapping("/every/newclass")
-    public List<ClassList> newClass() { return eClassService.getNewClass(); }
+    public List<ClassList> getNewClass() { return eClassService.getNewClass(); }
 }
