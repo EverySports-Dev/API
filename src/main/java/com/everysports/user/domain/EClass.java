@@ -2,6 +2,7 @@ package com.everysports.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 import org.hibernate.annotations.BatchSize;
 
@@ -60,5 +61,6 @@ public class EClass {
     private ETeacher eTeacher;
 
     @OneToMany(mappedBy = "eClass", fetch = FetchType.LAZY)
-    private List<EClassAttach> eClassAttachList;
+    private List<EClassAttach> eClassAttachList = new ArrayList<>();
+
 }

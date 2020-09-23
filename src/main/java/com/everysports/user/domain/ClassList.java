@@ -3,21 +3,27 @@ package com.everysports.user.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public interface ClassList {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ClassList {
 
-     String getClassName();
+     private String className;
 
-     ETeacher getETeacher();
+     private String teacherName;
 
-     Integer getClassPrice();
+     private Integer classPrice;
 
-     List<EClassAttach> getEClassAttachList();
+     private String uploadPath;
 
-     //String getFileName();
+     private String fileName;
 
-     Integer getClassNum();
+     private Integer classNum;
 
 }

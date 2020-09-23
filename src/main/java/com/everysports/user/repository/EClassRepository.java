@@ -8,10 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface EClassRepository extends JpaRepository<EClass, Long> {
-
-    @EntityGraph(attributePaths = {"eTeacher","eClassAttachList"})
-    @Query("select c from EClass c")
-    List<ClassList> findTop5ByOrderByClassNumDesc();
+public interface EClassRepository extends JpaRepository<EClass, Long>, CustomEClassRepository{
 
 }

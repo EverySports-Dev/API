@@ -1,7 +1,9 @@
 package com.everysports.user.controller;
 
 import com.everysports.user.domain.ClassList;
+import com.everysports.user.domain.EClass;
 import com.everysports.user.service.EClassService;
+import com.querydsl.core.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

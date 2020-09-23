@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.4.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.everysports'
@@ -18,7 +19,12 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
+    // https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
+    compile group: 'com.querydsl', name: 'querydsl-jpa'
+    compile group: 'com.querydsl', name: 'querydsl-apt'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     compile('org.springframework.boot:spring-boot-starter-jdbc')
@@ -35,3 +41,29 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+//querydsl 추가 시작
+def querydslDir = "src/main/generated"
+
+querydsl {
+    library  "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslDir]
+        }
+    }
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+//querydsl 추가 끝

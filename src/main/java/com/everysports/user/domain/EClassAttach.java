@@ -27,6 +27,9 @@ public class EClassAttach {
     @Column(name="fileName")
     private String fileName;
 
+    @Column(name="mainPhoto")
+    private boolean mainPhoto;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="class_ID")
     private EClass eClass;
