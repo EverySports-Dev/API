@@ -26,4 +26,9 @@ public class EClassService {
 
         return eClassRepository.findTop5ByOrderByClassOpenDateDesc();
     }
+
+    public List<ClassList> getCategoryClasses(Integer classCategory){
+
+        return eClassRepository.findByClassCategory(classCategory);
+    }
 }

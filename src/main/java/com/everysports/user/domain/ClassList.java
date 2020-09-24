@@ -15,18 +15,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ClassList {
 
+     private Long classID;
      private String className;
-
      private String teacherName;
-
      private Integer classPrice;
-
      private String uploadPath;
-
      private String fileName;
-
      private Integer classNum;
-
      private Date classOpenDate;
 
 }
