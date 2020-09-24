@@ -18,12 +18,12 @@ public class EClassController {
     private EClassService eClassService;
 
     @GetMapping("/every/hotclass")
-    public List<ClassList> getHotClass(){
-        return eClassService.getHotClass();
+    public List<ClassList> getHotClasses(){
+        return eClassService.getHotClasses();
     }
 
     @GetMapping("/every/newclass")
-    public List<ClassList> getNewClass() { return eClassService.getNewClass(); }
+    public List<ClassList> getNewClasses() { return eClassService.getNewClasses(); }
 
     @GetMapping("/search/class/{classCategory}")
     public List<ClassList> getCategoryClasses(@PathVariable("classCategory") Integer classCategory){

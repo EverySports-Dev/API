@@ -17,12 +17,12 @@ public class EClassService {
     @Autowired
     private EClassRepository eClassRepository;
 
-    public List<ClassList> getHotClass(){
+    public List<ClassList> getHotClasses(){
 
         return eClassRepository.findTop5ByOrderByClassNumDesc();
     }
 
-    public List<ClassList> getNewClass(){
+    public List<ClassList> getNewClasses(){
 
         return eClassRepository.findTop5ByOrderByClassOpenDateDesc();
     }
