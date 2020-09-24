@@ -35,10 +35,27 @@ public class CustomETeacherRepositoryImpl extends QuerydslRepositorySupport impl
                                         .fetch();
 
         for (TeacherList item:result) {
-            List<Long> sumResult = query.select(count(eClass)).from(eClass).where(eClass.eTeacher.teacherID.eq(item.getTeacherID())).fetch();
-            item.setClassSumNum(sumResult.get(0));
+            item.setClassSumNum(query.select(count(eClass)).from(eClass).where(eClass.eTeacher.teacherID.eq(item.getTeacherID())).fetchOne());
         }
 
         return result;
+    }
+
+    @Override
+    public TeacherInfo findByTeacherId(Long teacherID) {
+
+        JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
+
+        QETeacher eTeacher = QETeacher.eTeacher;
+        QEClass eClass = QEClass.eClass;
+        QEProfile eProfile = QEProfile.eProfile;
+
+        TeacherInfo result =query.select(Projections.constructor(TeacherInfo.class,eTeacher.teacherID,
+                eTeacher.teacherName,
+                eProfile.uploadPath, eProfile.fileName)).from(eTeacher).join(eProfile).on(eProfile.allID.eq(eTeacher.teacherID)).fetchOne();
+
+
+
+        return null;
     }
 }
