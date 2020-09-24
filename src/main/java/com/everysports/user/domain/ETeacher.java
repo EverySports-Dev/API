@@ -18,10 +18,10 @@ public class ETeacher {
     @Column(name = "teacher_ID")
     private Long teacherID;
 
-    @MapsId("allID")
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "all_ID")
-    private EAll eAll;
+//    @MapsId("allID")
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "teacher_ID")
+//    private EAll eAll;
 
     @Column(name = "teacher_Email")
     private String teacherEmail;

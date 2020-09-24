@@ -81,4 +81,25 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
 
         return result;
     }
+
+    @Override
+    public List<ClassList> findByTeacherID(Long teacherID) {
+
+        JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
+
+        QEClass eClass = QEClass.eClass;
+        QEClassAttach eClassAttach = QEClassAttach.eClassAttach;
+        QETeacher eTeacher = QETeacher.eTeacher;
+
+        return query.selectDistinct(Projections.constructor(ClassList.class,
+                eClass.classID, eClass.className, eTeacher.teacherName, eClass.classPrice, eClassAttach.uploadPath
+                ,eClassAttach.fileName, eClass.classNum, eClass.classOpenDate)).from(eClass)
+                .join(eTeacher).on(eClass.eTeacher.eq(eTeacher))
+                .join(eClassAttach).on(eClassAttach.eClass.eq(eClass))
+                .where(eClassAttach.mainPhoto.eq(true))
+                .where(eTeacher.teacherID.eq(teacherID))
+                .orderBy(eClass.classOpenDate.desc())
+                .limit(5)
+                .fetch();
+    }
 }

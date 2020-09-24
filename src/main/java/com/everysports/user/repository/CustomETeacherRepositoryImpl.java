@@ -42,7 +42,7 @@ public class CustomETeacherRepositoryImpl extends QuerydslRepositorySupport impl
     }
 
     @Override
-    public TeacherInfo findByTeacherId(Long teacherID) {
+    public TeacherInfo findByTeacherID(Long teacherID) {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
 
@@ -50,12 +50,8 @@ public class CustomETeacherRepositoryImpl extends QuerydslRepositorySupport impl
         QEClass eClass = QEClass.eClass;
         QEProfile eProfile = QEProfile.eProfile;
 
-        TeacherInfo result =query.select(Projections.constructor(TeacherInfo.class,eTeacher.teacherID,
-                eTeacher.teacherName,
-                eProfile.uploadPath, eProfile.fileName)).from(eTeacher).join(eProfile).on(eProfile.allID.eq(eTeacher.teacherID)).fetchOne();
-
-
-
-        return null;
+        return query.select(Projections.constructor(TeacherInfo.class,
+                eTeacher.teacherName, eTeacher.teacherEmail, eTeacher.teacherGender, eProfile.uploadPath, count(eClass.eTeacher),
+                eProfile.uploadPath, eProfile.fileName)).from(eTeacher).join(eProfile).on(eProfile.allID.eq(eTeacher.teacherID)).join(eClass).on(eClass.eTeacher.eq(eTeacher)).fetchOne();
     }
 }
