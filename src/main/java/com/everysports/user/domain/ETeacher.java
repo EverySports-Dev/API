@@ -2,10 +2,7 @@ package com.everysports.user.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -20,6 +17,11 @@ public class ETeacher {
     @Id
     @Column(name = "teacher_ID")
     private Long teacherID;
+
+    @MapsId("allID")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "all_ID")
+    private EAll eAll;
 
     @Column(name = "teacher_Email")
     private String teacherEmail;

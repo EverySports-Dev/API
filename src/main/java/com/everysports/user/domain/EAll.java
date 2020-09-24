@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class EAll {
     @Id
     @Column(name = "all_ID")
-    private Long id;
+    private Long allID;
 
     @NonNull
     @Column(name = "all_Type")
