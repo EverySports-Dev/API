@@ -1,15 +1,11 @@
 package com.everysports.user.repository;
 
 import com.everysports.user.domain.*;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.hibernate.Hibernate;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implements CustomEClassRepository {
 
@@ -18,7 +14,7 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
     }
 
     @Override
-    public List<ClassList> findTop5ByOrderByClassNumDesc() {
+    public List<ClassList> findTop5ByOrderByClassNumDescWithClassList() {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
 
@@ -39,7 +35,7 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
     }
 
     @Override
-    public List<ClassList> findTop5ByOrderByClassOpenDateDesc() {
+    public List<ClassList> findTop5ByOrderByClassOpenDateDescWithClassList() {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
 
@@ -61,7 +57,7 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
     }
 
     @Override
-    public List<ClassList> findByClassCategory(Integer classCategory) {
+    public List<ClassList> findByClassCategoryWithClassList(Integer classCategory) {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
 
@@ -83,7 +79,7 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
     }
 
     @Override
-    public List<ClassList> findByTeacherID(Long teacherID) {
+    public List<ClassList> findByTeacherIDWithClassList(Long teacherID) {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
 
@@ -101,5 +97,24 @@ public class CustomEClassRepositoryImpl extends QuerydslRepositorySupport implem
                 .orderBy(eClass.classOpenDate.desc())
                 .limit(5)
                 .fetch();
+    }
+
+    @Override
+    public ClassList findByClassIDWithClassList(Long classID) {
+        JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
+
+        QEClass eClass = QEClass.eClass;
+        QEClassAttach eClassAttach = QEClassAttach.eClassAttach;
+        QETeacher eTeacher = QETeacher.eTeacher;
+
+        return query.selectDistinct(Projections.constructor(ClassList.class,
+                eClass.classID, eClass.className,eClass.classNum,eClass.classPrice, eClassAttach.uploadPath
+                ,eClassAttach.fileName, eClass.classPolicy, eClass.classCurriculum)).from(eClass)
+                .join(eTeacher).on(eClass.eTeacher.eq(eTeacher))
+                .join(eClassAttach).on(eClassAttach.eClass.eq(eClass))
+                .where(eClassAttach.mainPhoto.eq(true))
+                .where(eClass.classID.eq(classID))
+                .orderBy(eClass.classOpenDate.desc())
+                .fetchOne();
     }
 }

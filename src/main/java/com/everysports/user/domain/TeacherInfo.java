@@ -19,8 +19,8 @@ public class TeacherInfo {
     private Long classSumNum;
     private String uploadPath;
     private String fileName;
-    private List<ClassList> classLists;
-    private List<ReviewList> reviewLists;
+    private List<ClassList> classList;
+    private List<ReviewList> reviewList;
 
     @QueryProjection
     public TeacherInfo(String teacherName, String teacherEmail, boolean teacherGender, String teacherContent,Long classSumNum,

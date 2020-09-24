@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface CustomEReviewRepository {
 
-    List<ReviewList> findByTeacherID(Long teacherID);
+    List<ReviewList> findByTeacherIDWithReviewList(Long teacherID);
+
+    List<ReviewList> findByClassIDWithReviewList(Long classID);
+
 }

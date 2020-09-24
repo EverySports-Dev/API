@@ -24,13 +24,13 @@ public class ETeacherService {
 
     public List<TeacherList> getCategoryTeachers(Integer classCategory){
 
-        return eTeacherRepository.findByClassCategory(classCategory);
+        return eTeacherRepository.findByClassCategoryWithTeacherList(classCategory);
     }
 
     public TeacherInfo getTeacherInfo(Long teacherID){
-        TeacherInfo teacherInfo = eTeacherRepository.findByTeacherID(teacherID);
-        teacherInfo.setClassLists(eClassRepository.findByTeacherID(teacherID));
-        teacherInfo.setReviewLists(eReviewRepository.findByTeacherID(teacherID));
+        TeacherInfo teacherInfo = eTeacherRepository.findByTeacherIDWithTeacherInfo(teacherID);
+        teacherInfo.setClassList(eClassRepository.findByTeacherIDWithClassList(teacherID));
+        teacherInfo.setReviewList(eReviewRepository.findByTeacherIDWithReviewList(teacherID));
         return teacherInfo;
     }
 

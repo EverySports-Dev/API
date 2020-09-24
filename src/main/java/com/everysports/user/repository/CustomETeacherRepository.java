@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CustomETeacherRepository {
 
-    List<TeacherList> findByClassCategory(Integer classCategory);
-    TeacherInfo findByTeacherID(Long teacherID);
+    List<TeacherList> findByClassCategoryWithTeacherList(Integer classCategory);
+    TeacherInfo findByTeacherIDWithTeacherInfo(Long teacherID);
+    TeacherList findByClassIDWithTeacherList(Long classID);
 }

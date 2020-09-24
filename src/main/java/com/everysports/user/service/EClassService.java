@@ -1,13 +1,10 @@
 package com.everysports.user.service;
 
-import com.everysports.user.domain.ClassList;
-import com.everysports.user.domain.EClass;
-import com.everysports.user.domain.EClassAttach;
-import com.everysports.user.domain.ETeacher;
+import com.everysports.user.domain.*;
 import com.everysports.user.repository.EClassRepository;
-import com.querydsl.core.Tuple;
+import com.everysports.user.repository.EReviewRepository;
+import com.everysports.user.repository.ETeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,19 +13,31 @@ import java.util.List;
 public class EClassService {
     @Autowired
     private EClassRepository eClassRepository;
+    @Autowired
+    private EReviewRepository eReviewRepository;
+    @Autowired
+    private ETeacherRepository eTeacherRepository;
 
     public List<ClassList> getHotClasses(){
 
-        return eClassRepository.findTop5ByOrderByClassNumDesc();
+        return eClassRepository.findTop5ByOrderByClassNumDescWithClassList();
     }
 
     public List<ClassList> getNewClasses(){
 
-        return eClassRepository.findTop5ByOrderByClassOpenDateDesc();
+        return eClassRepository.findTop5ByOrderByClassOpenDateDescWithClassList();
     }
 
     public List<ClassList> getCategoryClasses(Integer classCategory){
 
-        return eClassRepository.findByClassCategory(classCategory);
+        return eClassRepository.findByClassCategoryWithClassList(classCategory);
+    }
+
+    public ClassInfo getClassInfo(Long classID){
+        ClassInfo classInfo = new ClassInfo();
+        classInfo.setClassList(eClassRepository.findByClassIDWithClassList(classID));
+        classInfo.setReviewList(eReviewRepository.findByClassIDWithReviewList(classID));
+        classInfo.setTeacherList(eTeacherRepository.findByClassIDWithTeacherList(classID));
+        return classInfo;
     }
 }

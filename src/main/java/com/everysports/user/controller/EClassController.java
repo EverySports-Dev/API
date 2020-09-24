@@ -1,7 +1,9 @@
 package com.everysports.user.controller;
 
+import com.everysports.user.domain.ClassInfo;
 import com.everysports.user.domain.ClassList;
 import com.everysports.user.domain.EClass;
+import com.everysports.user.domain.TeacherInfo;
 import com.everysports.user.service.EClassService;
 import com.querydsl.core.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,12 @@ public class EClassController {
     public List<ClassList> getNewClasses() { return eClassService.getNewClasses(); }
 
     @GetMapping("/search/class/{classCategory}")
-    public List<ClassList> getCategoryClasses(@PathVariable("classCategory") Integer classCategory){
+    public List<ClassList> getCategoryClasses(@PathVariable("classCategory") Integer classCategory) {
         return eClassService.getCategoryClasses(classCategory);
+    }
+
+    @GetMapping("/classinfo/{classID}")
+    public ClassInfo getTeacherInfo(@PathVariable("classID")Long classID){
+        return eClassService.getClassInfo(classID);
     }
 }

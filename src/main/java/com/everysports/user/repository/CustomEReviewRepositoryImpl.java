@@ -15,19 +15,29 @@ public class CustomEReviewRepositoryImpl extends QuerydslRepositorySupport imple
 
 
     @Override
-    public List<ReviewList> findByTeacherID(Long teacherID) {
+    public List<ReviewList> findByTeacherIDWithReviewList(Long teacherID) {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
 
         QEReview eReview = QEReview.eReview;
         QEUserClass eUserClass = QEUserClass.eUserClass;
-        QETeacher eTeacher = QETeacher.eTeacher;
 
-        List<ReviewList> result = query.select(Projections.constructor(ReviewList.class,eUserClass.eUser.userID,eReview.reviewTitle,
+        return query.select(Projections.constructor(ReviewList.class,eUserClass.eUser.userID,eReview.reviewTitle,
                                                                         eReview.reviewContent, eReview.reviewCreatedAt))
                                         .from(eReview).join(eUserClass).on(eReview.eUserClass.eq(eUserClass))
                                         .where(eUserClass.eClass.eTeacher.teacherID.eq(teacherID)).limit(5).fetch();
+    }
 
-        return result;
+    @Override
+    public List<ReviewList> findByClassIDWithReviewList(Long classID) {
+        JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
+
+        QEReview eReview = QEReview.eReview;
+        QEUserClass eUserClass = QEUserClass.eUserClass;
+
+        return query.select(Projections.constructor(ReviewList.class,eUserClass.eUser.userID,eReview.reviewTitle,
+                eReview.reviewContent, eReview.reviewCreatedAt))
+                .from(eReview).join(eUserClass).on(eReview.eUserClass.eq(eUserClass))
+                .where(eUserClass.eClass.classID.eq(classID)).fetch();
     }
 }

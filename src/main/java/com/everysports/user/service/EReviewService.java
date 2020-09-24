@@ -14,7 +14,7 @@ public class EReviewService {
     private EReviewRepository eReviewRepository;
 
     public List<ReviewList> test(Long test){
-        return eReviewRepository.findByTeacherID(test);
+        return eReviewRepository.findByTeacherIDWithReviewList(test);
     }
 
 }
