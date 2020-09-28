@@ -1,6 +1,7 @@
 package com.everysports.user.controller;
 
 import com.everysports.user.domain.EUser;
+import com.everysports.user.domain.PaymentList;
 import com.everysports.user.domain.ScheduleList;
 import com.everysports.user.service.EUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class EUserController {
     @GetMapping("/payment/{classID}&{teacherID}&{userID}")
     public ScheduleList getPayment(@PathVariable("classID")Long classID, @PathVariable("teacherID")Long teacherID, @PathVariable("userID")Long userID){
         return eUserService.getPayment(classID, teacherID, userID);
+    }
+
+    @PostMapping("/payment/detail")
+    public ResponseEntity<String> postPayment(@RequestBody PaymentList paymentList){
+        return null;
     }
 }
