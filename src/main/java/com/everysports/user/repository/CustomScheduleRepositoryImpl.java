@@ -1,6 +1,7 @@
 package com.everysports.user.repository;
 
 import com.everysports.user.domain.*;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -42,5 +43,18 @@ public class CustomScheduleRepositoryImpl extends QuerydslRepositorySupport impl
         QETeacherSchedule eTeacherSchedule = QETeacherSchedule.eTeacherSchedule;
 
         return query.select(eTeacherSchedule.day).from(eTeacherSchedule).where(eTeacherSchedule.eTeacher.teacherID.eq(teacherID)).fetchOne();
+    }
+
+    @Override
+    public List<UserScheduleList> findByUserIDWithUserScheduleList(Long userID) {
+
+        JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
+        QETeacher eTeacher = QETeacher.eTeacher;
+        QEClassSchedule eClassSchedule = QEClassSchedule.eClassSchedule;
+        QEClass eClass = QEClass.eClass;
+        return query.select(Projections.constructor(UserScheduleList.class,eTeacher.teacherName, eClass.className, eClassSchedule))
+                                            .from(eClassSchedule).join(eTeacher).on(eTeacher.eq(eClassSchedule.eUserClass.eClass.eTeacher))
+                                            .join(eClass).on(eClass.eq(eClassSchedule.eUserClass.eClass)).fetch();
+
     }
 }

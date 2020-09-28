@@ -3,11 +3,14 @@ package com.everysports.user.controller;
 import com.everysports.user.domain.EUser;
 import com.everysports.user.domain.PaymentList;
 import com.everysports.user.domain.ScheduleList;
+import com.everysports.user.domain.UserScheduleList;
 import com.everysports.user.service.EUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class EUserController {
@@ -37,4 +40,10 @@ public class EUserController {
     public ResponseEntity<String> postPayment(@RequestBody PaymentList paymentList){
         return null;
     }
+
+    @GetMapping("/sports/schedule/{userID}")
+    public List<UserScheduleList> getSports(@PathVariable("userID") Long userID){
+        return eUserService.getSports(userID);
+    }
+
 }
