@@ -1,7 +1,7 @@
 package com.everysports.user.repository;
 
-import com.everysports.user.domain.TeacherInfo;
-import com.everysports.user.domain.TeacherList;
+import com.everysports.user.domain.dto.TeacherInfo;
+import com.everysports.user.domain.dto.TeacherList;
 
 import java.util.List;
 

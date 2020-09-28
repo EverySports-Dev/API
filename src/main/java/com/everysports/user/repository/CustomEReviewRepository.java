@@ -1,6 +1,6 @@
 package com.everysports.user.repository;
 
-import com.everysports.user.domain.ReviewList;
+import com.everysports.user.domain.dto.ReviewList;
 
 import java.util.List;
 

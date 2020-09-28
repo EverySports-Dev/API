@@ -2,12 +2,11 @@ package com.everysports.user.service;
 
 import com.everysports.user.domain.EAll;
 import com.everysports.user.domain.EUser;
-import com.everysports.user.domain.ScheduleList;
-import com.everysports.user.domain.UserScheduleList;
+import com.everysports.user.domain.dto.ScheduleList;
+import com.everysports.user.domain.dto.UserScheduleList;
 import com.everysports.user.repository.EAllRepository;
 import com.everysports.user.repository.EUserRepository;
 import com.everysports.user.repository.ScheduleRepository;
-import javafx.scene.canvas.GraphicsContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,7 @@
 package com.everysports.user.service;
 
-import com.everysports.user.domain.*;
+import com.everysports.user.domain.dto.ClassInfo;
+import com.everysports.user.domain.dto.ClassList;
 import com.everysports.user.repository.EClassRepository;
 import com.everysports.user.repository.EReviewRepository;
 import com.everysports.user.repository.ETeacherRepository;

@@ -1,8 +1,8 @@
 package com.everysports.user.controller;
 
-import com.everysports.user.domain.ReviewList;
-import com.everysports.user.domain.TeacherInfo;
-import com.everysports.user.domain.TeacherList;
+import com.everysports.user.domain.dto.ReviewList;
+import com.everysports.user.domain.dto.TeacherInfo;
+import com.everysports.user.domain.dto.TeacherList;
 import com.everysports.user.service.EReviewService;
 import com.everysports.user.service.ETeacherService;
 import org.springframework.beans.factory.annotation.Autowired;

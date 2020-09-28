@@ -1,4 +1,4 @@
-package com.everysports.user.domain;
+package com.everysports.user.domain.dto;
 
 import lombok.Data;
 

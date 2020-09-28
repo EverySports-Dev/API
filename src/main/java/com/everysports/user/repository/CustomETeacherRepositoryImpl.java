@@ -1,6 +1,8 @@
 package com.everysports.user.repository;
 
 import com.everysports.user.domain.*;
+import com.everysports.user.domain.dto.TeacherInfo;
+import com.everysports.user.domain.dto.TeacherList;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;

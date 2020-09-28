@@ -1,4 +1,4 @@
-package com.everysports.user.domain;
+package com.everysports.user.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;

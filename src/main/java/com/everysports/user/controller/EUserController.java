@@ -1,9 +1,9 @@
 package com.everysports.user.controller;
 
 import com.everysports.user.domain.EUser;
-import com.everysports.user.domain.PaymentList;
-import com.everysports.user.domain.ScheduleList;
-import com.everysports.user.domain.UserScheduleList;
+import com.everysports.user.domain.dto.PaymentList;
+import com.everysports.user.domain.dto.ScheduleList;
+import com.everysports.user.domain.dto.UserScheduleList;
 import com.everysports.user.service.EUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

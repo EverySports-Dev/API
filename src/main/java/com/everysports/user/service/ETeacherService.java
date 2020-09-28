@@ -1,7 +1,7 @@
 package com.everysports.user.service;
 
-import com.everysports.user.domain.TeacherInfo;
-import com.everysports.user.domain.TeacherList;
+import com.everysports.user.domain.dto.TeacherInfo;
+import com.everysports.user.domain.dto.TeacherList;
 import com.everysports.user.repository.EClassRepository;
 import com.everysports.user.repository.EReviewRepository;
 import com.everysports.user.repository.ETeacherRepository;

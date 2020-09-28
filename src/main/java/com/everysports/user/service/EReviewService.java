@@ -1,6 +1,6 @@
 package com.everysports.user.service;
 
-import com.everysports.user.domain.ReviewList;
+import com.everysports.user.domain.dto.ReviewList;
 import com.everysports.user.repository.EReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
