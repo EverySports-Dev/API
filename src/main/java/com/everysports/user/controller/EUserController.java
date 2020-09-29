@@ -1,6 +1,7 @@
 package com.everysports.user.controller;
 
 import com.everysports.user.domain.EUser;
+import com.everysports.user.domain.dto.MyData;
 import com.everysports.user.domain.dto.PaymentList;
 import com.everysports.user.domain.dto.ScheduleList;
 import com.everysports.user.domain.dto.UserScheduleList;
@@ -44,6 +45,11 @@ public class EUserController {
     @GetMapping("/sports/schedule/{userID}")
     public List<UserScheduleList> getSports(@PathVariable("userID") Long userID){
         return eUserService.getSports(userID);
+    }
+
+    @GetMapping("/mydata/{userID}")
+    public MyData getMyData(@PathVariable("userID")Long userID){
+        return eUserService.getMydata(userID);
     }
 
 }

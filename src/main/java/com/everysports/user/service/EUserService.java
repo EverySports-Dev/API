@@ -2,9 +2,11 @@ package com.everysports.user.service;
 
 import com.everysports.user.domain.EAll;
 import com.everysports.user.domain.EUser;
+import com.everysports.user.domain.dto.MyData;
 import com.everysports.user.domain.dto.ScheduleList;
 import com.everysports.user.domain.dto.UserScheduleList;
 import com.everysports.user.repository.EAllRepository;
+import com.everysports.user.repository.EHwRepository;
 import com.everysports.user.repository.EUserRepository;
 import com.everysports.user.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class EUserService {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+
+    @Autowired
+    private EHwRepository eHwRepository;
 
     public EUser addEUser(EUser eUser) {
         eAllRepository.save(new EAll(eUser.getUserID(), 1));
@@ -45,6 +50,10 @@ public class EUserService {
 
     public List<UserScheduleList> getSports(Long userID){
         return scheduleRepository.findByUserIDWithUserScheduleList(userID);
+    }
+
+    public MyData getMydata(Long userID){
+        return eHwRepository.findByUserIDWithMyData(userID);
     }
 
 }
