@@ -62,4 +62,9 @@ public class EUserService {
     public List<MyScore> getMyScore(Long userID) {
         return eHwRepository.findByUserIDWithMyScore(userID);
     }
+
+    public List<String> getSetting(Long userID) {
+
+        return eUserRepository.findByUserIDWithClassName(userID);
+    }
 }

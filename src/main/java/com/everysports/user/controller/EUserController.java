@@ -56,4 +56,9 @@ public class EUserController {
     public List<MyScore> getMyScore(@PathVariable("userID") Long userID){
         return eUserService.getMyScore(userID);
     }
+
+    @GetMapping("/setting/{userID}")
+    public List<String> getSetting(@PathVariable("userID") Long userID){
+        return eUserService.getSetting(userID);
+    }
 }
