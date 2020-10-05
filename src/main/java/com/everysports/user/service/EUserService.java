@@ -3,6 +3,7 @@ package com.everysports.user.service;
 import com.everysports.user.domain.EAll;
 import com.everysports.user.domain.EUser;
 import com.everysports.user.domain.dto.MyData;
+import com.everysports.user.domain.dto.PaymentList;
 import com.everysports.user.domain.dto.ScheduleList;
 import com.everysports.user.domain.dto.UserScheduleList;
 import com.everysports.user.repository.EAllRepository;
@@ -46,6 +47,13 @@ public class EUserService {
         scheduleList.setUserSchedule(scheduleRepository.findByClassID(classID));
 
         return scheduleList;
+    }
+
+    public Integer postPayment(PaymentList paymentList){
+
+        eUserRepository.saveWithPaymentList(paymentList);
+
+        return 1;
     }
 
     public List<UserScheduleList> getSports(Long userID){

@@ -39,7 +39,10 @@ public class EUserController {
 
     @PostMapping("/payment/detail")
     public ResponseEntity<String> postPayment(@RequestBody PaymentList paymentList){
-        return null;
+
+        return eUserService.postPayment(paymentList) == 1
+                ? new ResponseEntity<>("success", HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/sports/schedule/{userID}")

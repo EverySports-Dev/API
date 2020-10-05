@@ -15,6 +15,7 @@ import java.util.Date;
 public class EClassSchedule {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "classSchedule_ID")
     private Long classScheduleID;
 

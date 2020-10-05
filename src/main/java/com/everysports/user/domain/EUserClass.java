@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Table(name = "eUserClass")
 public class EUserClass {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userClass_ID")
     private Long userClassID;
 

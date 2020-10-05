@@ -15,6 +15,7 @@ import java.util.Date;
 public class EHwScore {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hwScore_ID")
     private Long hwScoreID;
 

@@ -16,6 +16,7 @@ import java.util.Date;
 public class EReview {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_ID")
     private Long reviewID;
 

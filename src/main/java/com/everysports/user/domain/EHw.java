@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class EHw {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hw_ID")
     private Long hwID;
 
