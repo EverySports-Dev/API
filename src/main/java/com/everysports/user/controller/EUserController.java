@@ -48,7 +48,7 @@ public class EUserController {
     }
 
     @GetMapping("/mydata/{userID}")
-    public MyData getMyData(@PathVariable("userID")Long userID){
+    public List<MyData> getMyData(@PathVariable("userID")Long userID){
         return eUserService.getMydata(userID);
     }
 

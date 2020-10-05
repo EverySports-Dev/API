@@ -10,7 +10,6 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomEHwRepositoryImpl extends QuerydslRepositorySupport implements CustomEHwRepository {
@@ -20,19 +19,20 @@ public class CustomEHwRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public MyData findByUserIDWithMyData(Long userID) {
+    public List<MyData> findByUserIDWithMyData(Long userID) {
 
         JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
         QEHw eHw = QEHw.eHw;
         QEHwScore eHwScore = QEHwScore.eHwScore;
-        MyData result = query.select(Projections.constructor(MyData.class,eHwScore.eHw.hwID, eHwScore.hwTime)).from(eHwScore)
-                            .where(eHwScore.eHw.eUser.userID.eq(userID)).fetchOne();
+        List<MyData> result = query.select(Projections.constructor(MyData.class,eHwScore.eHw.hwID, eHwScore.hwTime)).from(eHwScore)
+                            .where(eHwScore.eHw.eUser.userID.eq(userID)).fetch();
 
-        if (result != null) {
-            result.setHwScores(query.select(Projections.constructor(Score.class,eHwScore.eHw.hwName, eHwScore.great, eHwScore.normal, eHwScore.bad))
-                                .from(eHwScore).where(eHwScore.eHw.eUser.userID.eq(userID)).fetch());
-        }
-
+        result.forEach(r -> {
+            if (r != null) {
+                r.setHwScores(query.select(Projections.constructor(Score.class,eHwScore.eHw.hwName, eHwScore.great, eHwScore.normal, eHwScore.bad))
+                        .from(eHwScore).where(eHwScore.eHw.eUser.userID.eq(userID)).fetch());
+            }
+        });
 
         return result;
     }

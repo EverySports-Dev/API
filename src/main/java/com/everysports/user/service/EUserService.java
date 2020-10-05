@@ -55,7 +55,7 @@ public class EUserService {
         return scheduleRepository.findByUserIDWithUserScheduleList(userID);
     }
 
-    public MyData getMydata(Long userID){
+    public List<MyData> getMydata(Long userID){
         return eHwRepository.findByUserIDWithMyData(userID);
     }
 
