@@ -4,11 +4,13 @@ import com.everysports.user.domain.EHw;
 import com.everysports.user.domain.QEHw;
 import com.everysports.user.domain.QEHwScore;
 import com.everysports.user.domain.dto.MyData;
+import com.everysports.user.domain.dto.MyScore;
 import com.everysports.user.domain.dto.Score;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomEHwRepositoryImpl extends QuerydslRepositorySupport implements CustomEHwRepository {
@@ -33,5 +35,16 @@ public class CustomEHwRepositoryImpl extends QuerydslRepositorySupport implement
 
 
         return result;
+    }
+
+    @Override
+    public List<MyScore> findByUserIDWithMyScore(Long userID) {
+
+        JPAQueryFactory query = new JPAQueryFactory(this.getEntityManager());
+        QEHw eHw = QEHw.eHw;
+        QEHwScore eHwScore = QEHwScore.eHwScore;
+
+        return query.select(Projections.constructor(MyScore.class))
+                .from(eHw).join(eHwScore).on(eHwScore.eHw.eq(eHw)).limit(5).fetch();
     }
 }

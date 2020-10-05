@@ -2,10 +2,7 @@ package com.everysports.user.service;
 
 import com.everysports.user.domain.EAll;
 import com.everysports.user.domain.EUser;
-import com.everysports.user.domain.dto.MyData;
-import com.everysports.user.domain.dto.PaymentList;
-import com.everysports.user.domain.dto.ScheduleList;
-import com.everysports.user.domain.dto.UserScheduleList;
+import com.everysports.user.domain.dto.*;
 import com.everysports.user.repository.EAllRepository;
 import com.everysports.user.repository.EHwRepository;
 import com.everysports.user.repository.EUserRepository;
@@ -51,8 +48,6 @@ public class EUserService {
 
     public Integer postPayment(PaymentList paymentList){
 
-        eUserRepository.saveWithPaymentList(paymentList);
-
         return 1;
     }
 
@@ -64,4 +59,7 @@ public class EUserService {
         return eHwRepository.findByUserIDWithMyData(userID);
     }
 
+    public List<MyScore> getMyScore(Long userID) {
+        return eHwRepository.findByUserIDWithMyScore(userID);
+    }
 }

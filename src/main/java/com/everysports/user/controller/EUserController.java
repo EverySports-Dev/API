@@ -1,10 +1,7 @@
 package com.everysports.user.controller;
 
 import com.everysports.user.domain.EUser;
-import com.everysports.user.domain.dto.MyData;
-import com.everysports.user.domain.dto.PaymentList;
-import com.everysports.user.domain.dto.ScheduleList;
-import com.everysports.user.domain.dto.UserScheduleList;
+import com.everysports.user.domain.dto.*;
 import com.everysports.user.service.EUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,4 +52,8 @@ public class EUserController {
         return eUserService.getMydata(userID);
     }
 
+    @GetMapping("/mydata/score/{userID}")
+    public List<MyScore> getMyScore(@PathVariable("userID") Long userID){
+        return eUserService.getMyScore(userID);
+    }
 }
